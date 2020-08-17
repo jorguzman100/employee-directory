@@ -4,7 +4,9 @@ import Col from './Col';
 import Card from './Card';
 import Search from './Search'
 import Table from './Table';
+import MyMap from './Map';
 import API from '../utils/API';
+
 
 class Main extends Component {
     state = {
@@ -58,7 +60,9 @@ class Main extends Component {
                         </Card>
                     </Col>
                     <Col>
-                        <Card title='Map'></Card>
+                        <Card title='Map'>
+                            <MyMap />
+                        </Card>
                     </Col>
                 </Row>
                 <Row>
