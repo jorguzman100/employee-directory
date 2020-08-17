@@ -30,8 +30,6 @@
   width: 100%;
   max-width: 200px;
   z-index: 11;
-  background: none;
-  border: none;
 }
 
 .mapSearch input {
@@ -40,15 +38,16 @@
   width: 100%;
 }
 
-/* .mapSearch {
+.mapLocate {
   position: absolute;
-  top: 1rem;
+  top: 3.5rem;
   right: 1rem;
   background: none;
   border: none;
   z-index: 10;
-} */
-.mapSearch img {
+}
+
+.mapLocate img {
   width: 30px;
   cursor: pointer;
 }

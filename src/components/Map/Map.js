@@ -91,6 +91,8 @@ const Map = (props) => {
       {/* The Search */}
       <Search panTo={panTo}/>
 
+      {/* The Geolocation */}
+      <Locate panTo={panTo}/>
 
       <GoogleMap
         mapContainerStyle={mapContainerStyle}
@@ -202,7 +204,7 @@ const Search = ({panTo}) => {
 function Locate({ panTo }) {
   return (
     <button
-      className="locate"
+      className="mapLocate"
       onClick={() => {
         navigator.geolocation.getCurrentPosition(
           (position) => {
@@ -278,8 +280,8 @@ function Locate({ panTo }) {
 
 
 
-/*
-/* const defineEmployeeMarkers = () => {
+/* 
+const defineEmployeeMarkers = () => {
     props.results.forEach((result) => {
       console.log('lat: ' + result.location.coordinates.latitude + ' lng: ', result.location.coordinates.longitude);
       setMarkers((current) => [...current, {
@@ -291,6 +293,16 @@ function Locate({ panTo }) {
       console.log('markers', markers);
     });
   }
-  */
 
+  try {
+          const results = await getGeocode({ address });
+          const { lat, lng } = await getLatLng(results[0]);
+          panTo({lat, lng});
+          console.log('geoCode results[0]: ', results[0]);
+          console.log('lat, lng: ', lat, lng);
+        } catch(error) {
+          console.log(error);
+        }
+ 
+ */
 
