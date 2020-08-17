@@ -2,8 +2,8 @@ import React from 'react';
 import TRow from './TRow';
 
 const Table = (props) => {
-    console.log('Table()');
-    console.log('props.results: ', props.results);
+    /* console.log('Table()');
+    console.log('props.results: ', props.results); */
 
     return (
         <div className="table-responsive">
