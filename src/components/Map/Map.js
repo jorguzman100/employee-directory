@@ -63,6 +63,7 @@ const Map = (props) => {
       lat: event.latLng.lat(),
       lng: event.latLng.lng(),
       time: new Date(),
+      picture: '/markerIcon.svg'
     },
     ]);
     /* console.log('GoogleMap event', event);
@@ -75,6 +76,7 @@ const Map = (props) => {
       lat: employee.lat,
       lng: employee.lng,
       time: new Date(),
+      picture: employee.picture
     },
     ]);
   });
@@ -127,7 +129,7 @@ const Map = (props) => {
 
             // change the marker icon
             icon={{
-              url: '/markerIcon.svg',
+              url: marker.picture,
               scaledSize: new window.google.maps.Size(20, 20),
               origin: new window.google.maps.Point(0, 0),
               anchor: new window.google.maps.Point(10, 10)
@@ -226,6 +228,7 @@ function EmployeeMarker(props) {
 
         props.results.forEach(async (result) => {
           let address = `${result.location.city} ${result.location.country}`;
+          let picture = result.picture.thumbnail;
           console.log('adress: ', address);
 
           try {
@@ -233,7 +236,7 @@ function EmployeeMarker(props) {
             const { lat, lng } = await getLatLng(geoResults[0]);
             console.log('geoResults[0]: ', geoResults[0]);
             console.log('lat, lng: ', lat, lng);
-            props.getEmployeeMarkers({lat, lng});
+            props.getEmployeeMarkers({lat, lng, picture});
           } catch (error) {
             console.log(error);
           }

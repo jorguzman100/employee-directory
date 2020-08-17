@@ -11,6 +11,7 @@ import API from '../utils/API';
 class Main extends Component {
     state = {
         results: [],
+        filteredResults: [],
         result: {},
         search: ""
     };
@@ -24,7 +25,8 @@ class Main extends Component {
             .then((res) => {
                 // console.log('res: ', res.data.results);
                 this.setState({
-                    results: res.data.results
+                    results: res.data.results,
+                    filteredResults: res.data.results
                 });
             })
             .catch(err => console.log(err));
@@ -34,7 +36,13 @@ class Main extends Component {
         const value = event.target.value;
         const name = event.target.name;
         this.setState({
-            [name]: value
+            [name]: value,
+            /* filteredResults: this.state.results.filter((result) => {
+                Object.values(result).forEach((resultValue) => {
+                    console.log('resultValue: ', resultValue);
+                    return true
+                });
+            }) */
         });
     };
 
@@ -68,7 +76,7 @@ class Main extends Component {
                 <Row>
                     <Col>
                         <Card title='Details'>
-                            <Table results={this.state.results}/>
+                            <Table results={this.state.filteredResults}/>
                         </Card>
                     </Col>
                 </Row>
