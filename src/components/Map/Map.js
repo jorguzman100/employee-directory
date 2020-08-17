@@ -69,6 +69,16 @@ const Map = (props) => {
     console.log('markers', markers); */
   });
 
+  // Get the employee markers
+  const getEmployeeMarkers = React.useCallback((employee) => {
+    setMarkers((current) => [...current, {
+      lat: employee.lat,
+      lng: employee.lng,
+      time: new Date(),
+    },
+    ]);
+  });
+
   // useRef keeps a state without causing re-renders
   const mapRef = React.useRef();
   const onMapLoad = React.useCallback((map) => {
@@ -89,10 +99,16 @@ const Map = (props) => {
       <div className='mapText'>Editable map text </div>
 
       {/* The Search */}
-      <Search panTo={panTo}/>
+      <Search panTo={panTo} />
 
       {/* The Geolocation */}
-      <Locate panTo={panTo}/>
+      <Locate panTo={panTo} />
+
+      {/* Get the employee markers */}
+      <EmployeeMarker
+        results={props.results}
+        getEmployeeMarkers={getEmployeeMarkers} 
+        />
 
       <GoogleMap
         mapContainerStyle={mapContainerStyle}
@@ -147,7 +163,7 @@ export default Map;
 
 
 
-const Search = ({panTo}) => {
+const Search = ({ panTo }) => {
   const {
     ready,
     value,
@@ -162,7 +178,7 @@ const Search = ({panTo}) => {
   });
 
   return (
-  <div className='mapSearch'>
+    <div className='mapSearch'>
       <Combobox
         onSelect={async (address) => {
           console.log('address: ', address);
@@ -170,24 +186,24 @@ const Search = ({panTo}) => {
           // Update state and avoid keep showing the search popover in the search input
           setValue(address, false);
           clearSuggestions();
-        try {
-          const results = await getGeocode({ address });
-          const { lat, lng } = await getLatLng(results[0]);
-          panTo({lat, lng});
-          console.log('geoCode results[0]: ', results[0]);
-          console.log('lat, lng: ', lat, lng);
-        } catch(error) {
-          console.log(error);
-        }
-    }}
-    >
-      <ComboboxInput
-        value={value}
-        onChange={(e) => {
-          setValue(e.target.value)
+          try {
+            const results = await getGeocode({ address });
+            const { lat, lng } = await getLatLng(results[0]);
+            panTo({ lat, lng });
+            console.log('geoCode results[0]: ', results[0]);
+            console.log('lat, lng: ', lat, lng);
+          } catch (error) {
+            console.log(error);
+          }
         }}
-        disabled={!ready}
-        placeholder={'Enter an address'}
+      >
+        <ComboboxInput
+          value={value}
+          onChange={(e) => {
+            setValue(e.target.value)
+          }}
+          disabled={!ready}
+          placeholder={'Enter an address'}
         />
         <ComboboxPopover>
           {status === 'OK' &&
@@ -196,9 +212,45 @@ const Search = ({panTo}) => {
             ))
           }
         </ComboboxPopover>
-    </Combobox>
+      </Combobox>
     </div>
   )
+}
+
+function EmployeeMarker(props) {
+  return (
+    <button
+      className="mapEmployeeIcon"
+      onClick={() => {
+        console.log('EmployeeMarker()');
+
+        props.results.forEach(async (result) => {
+          let address = `${result.location.city} ${result.location.country}`;
+          console.log('adress: ', address);
+
+          try {
+            const geoResults = await getGeocode({ address });
+            const { lat, lng } = await getLatLng(geoResults[0]);
+            console.log('geoResults[0]: ', geoResults[0]);
+            console.log('lat, lng: ', lat, lng);
+            props.getEmployeeMarkers({lat, lng});
+          } catch (error) {
+            console.log(error);
+          }
+
+          /* setMarkers((current) => [...current, {
+            lat: result.location.coordinates.latitude,
+            lng: result.location.coordinates.longitude,
+            time: new Date(),
+          },
+          ]);
+          console.log('markers', markers); */
+        });
+      }}
+    >
+      <img src="/employeeImage.svg" alt="employees" />
+    </button>
+  );
 }
 
 function Locate({ panTo }) {
@@ -276,33 +328,3 @@ function Locate({ panTo }) {
     </div>
   );
 } */
-
-
-
-
-/* 
-const defineEmployeeMarkers = () => {
-    props.results.forEach((result) => {
-      console.log('lat: ' + result.location.coordinates.latitude + ' lng: ', result.location.coordinates.longitude);
-      setMarkers((current) => [...current, {
-        lat: result.location.coordinates.latitude,
-        lng: result.location.coordinates.longitude,
-        time: new Date(),
-      },
-      ]);
-      console.log('markers', markers);
-    });
-  }
-
-  try {
-          const results = await getGeocode({ address });
-          const { lat, lng } = await getLatLng(results[0]);
-          panTo({lat, lng});
-          console.log('geoCode results[0]: ', results[0]);
-          console.log('lat, lng: ', lat, lng);
-        } catch(error) {
-          console.log(error);
-        }
- 
- */
-
