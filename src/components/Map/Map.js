@@ -1,4 +1,5 @@
 import React from "react";
+import mapStyles from './mapStyles'
 
 import {
   GoogleMap,
@@ -32,11 +33,14 @@ const mapContainerStyle = {
     width: '100%',
     height: '30vh'
 };
-const zoom = 8;
+const zoom = 12;
 const center = {
     lat: 59.4370,
     lng: 24.7536
 };
+const options = {
+  styles: mapStyles
+}
 
 export default function Map() {
   const { isLoaded, loadError } = useLoadScript({
@@ -52,7 +56,8 @@ export default function Map() {
           <GoogleMap
               mapContainerStyle={mapContainerStyle}
               zoom={zoom}
-              center={center}
+        center={center}
+        options={options}
           >
         
       </GoogleMap>

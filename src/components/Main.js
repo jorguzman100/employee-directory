@@ -4,7 +4,7 @@ import Col from './Col';
 import Card from './Card';
 import Search from './Search'
 import Table from './Table';
-import Map from './Map';
+import Map from './Map/Map';
 import API from '../utils/API';
 
 
