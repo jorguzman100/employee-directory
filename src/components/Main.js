@@ -61,7 +61,7 @@ class Main extends Component {
                     </Col>
                     <Col>
                         <Card title='Map'>
-                            <MyMap />
+                            {/* <MyMap /> */}
                         </Card>
                     </Col>
                 </Row>
