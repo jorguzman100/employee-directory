@@ -4,7 +4,7 @@ const Header = () => {
     return (
         <header className="App-header">
             <div className="sticky-top bg-info text-white text-center py-3 display-4">
-                <p>Employee Directory</p>
+                <p><span role="img" aria-label="employee emoji">👩🏻‍💼👨🏻‍💼</span> Employee Directory</p>
             </div>
         </header>
     );

@@ -59,15 +59,15 @@ class Main extends Component {
                                 handleFormSubmit={this.handleFormSubmit} />
                         </Card>
                     </Col>
-                    <Col>
-                        <Card title='Map'>
-                            <Map />
+                    <Col> 
+                        <Card title={'Locations 🌍'}>
+                            <Map results={this.state.results}/>
                         </Card>
                     </Col>
                 </Row>
                 <Row>
                     <Col>
-                        <Card title='Employees details'>
+                        <Card title='Details'>
                             <Table results={this.state.results}/>
                         </Card>
                     </Col>
