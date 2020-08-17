@@ -4,7 +4,7 @@ import Col from './Col';
 import Card from './Card';
 import Search from './Search'
 import Table from './Table';
-import MyMap from './Map';
+import Map from './Map';
 import API from '../utils/API';
 
 
@@ -61,7 +61,7 @@ class Main extends Component {
                     </Col>
                     <Col>
                         <Card title='Map'>
-                            {/* <MyMap /> */}
+                            <Map />
                         </Card>
                     </Col>
                 </Row>
