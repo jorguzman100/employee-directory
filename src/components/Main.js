@@ -38,16 +38,12 @@ class Main extends Component {
         this.setState({
             [name]: value,
             filteredResults: this.state.results.filter((result) => {
-                // let name = `${result.name.first} ${result.name.last}`;
-                // console.log('result.name.first: ', result.name.first);
-                if (result.name.first.toLowerCase().includes(value) || result.name.last.toLowerCase().includes(value)) {
-                    // console.log('result: ', result)
+                let name = `${result.name.first} ${result.name.last}`;
+                if (name.toLowerCase().includes(value)) {
                     return result;
                 }
             })
         });
-        console.log('value: ', value);
-        // console.log('filteredResults: ', this.state.filteredResults);
     };
 
     handleFormSubmit = event => {
