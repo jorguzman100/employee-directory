@@ -2,8 +2,8 @@ import React from 'react';
 import TRow from './TRow';
 
 const Table = (props) => {
-    /* console.log('Table()');
-    console.log('props.results: ', props.results); */
+    console.log('Table()');
+    console.log('props.results: ', props.results);
 
     return (
         <div className="table-responsive">
@@ -28,7 +28,7 @@ const Table = (props) => {
                                 firstName={result.name.first}
                                 lastName={result.name.last}
                                 email={result.email}
-                                dob={result.dob}
+                                dob={result.dob.date.slice(0,10)}
                                 address={`${result.location.street.number} ${result.location.street.name}`}
                                 city={result.location.city}
                                 mobile={result.cell}

@@ -38,8 +38,17 @@ class Main extends Component {
         this.setState({
             [name]: value,
             filteredResults: this.state.results.filter((result) => {
-                let name = `${result.name.first} ${result.name.last}`;
-                if (name.toLowerCase().includes(value)) {
+                let compareData = `
+                ${result.name.first} 
+                ${result.name.last} 
+                ${result.email} 
+                ${result.dob.date.slice(0, 10)} 
+                ${result.location.street.number} 
+                ${result.location.street.name} 
+                ${result.location.city} 
+                ${result.cell}
+                `;
+                if (compareData.toLowerCase().includes(value)) {
                     return result;
                 }
             })
