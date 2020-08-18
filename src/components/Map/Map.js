@@ -86,7 +86,7 @@ const Map = (props) => {
       lat: event.latLng.lat(),
       lng: event.latLng.lng(),
       time: new Date(),
-      picture: '/markerIcon.svg'
+      picture: '/employeeMarker.png'
     },
     ]);
     /* console.log('GoogleMap event', event);
@@ -275,7 +275,8 @@ function EmployeeMarker(props) {
         });
       }}
     >
-      <img src="/employeeImage.svg" alt="employees" />
+      {/* <img src="/employeeImage.svg" alt="employees" /> */}
+      <i className="fas fa-users text-info"></i>
     </button>
   );
 }

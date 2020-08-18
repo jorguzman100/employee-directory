@@ -79,7 +79,7 @@ With the described process we were able to create a useful and efficient single 
 The project was uploaded to [GitHub](https://github.com/) at the following repository:
 [https://github.com/jorguzman100/19_employee_directory](https://github.com/jorguzman100/19_employee_directory)
 
-You can access the deployed application with the Heroku link:
+You can access the deployed application with the GitHub Pages link:
 [https://jorguzman100.github.io/19_employee_directory/](https://jorguzman100.github.io/19_employee_directory/)
 
 To install the project follow these steps:
@@ -120,6 +120,8 @@ To install the project follow these steps:
 [Markup Validation Service](https://validator.w3.org/)
 
 **Tutorials**
+
+[Google Maps & Google Places in React](https://www.youtube.com/watch?v=WZcxJGmLbSo)
 
 [How to Set Dynamic Property Keys with ES6](https://www.samanthaming.com/tidbits/37-dynamic-property-name-with-es6/)
 
