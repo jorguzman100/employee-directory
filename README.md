@@ -79,7 +79,7 @@ With the described process we were able to create a useful and efficient single 
 The project was uploaded to [GitHub](https://github.com/) at the following repository:
 [https://github.com/jorguzman100/19_employee_directory](https://github.com/jorguzman100/19_employee_directory)
 
-You can access the deployed application with the GitHup Pages link:
+You can access the deployed application with the Heroku link:
 [https://jorguzman100.github.io/19_employee_directory/](https://jorguzman100.github.io/19_employee_directory/)
 
 To install the project follow these steps:
