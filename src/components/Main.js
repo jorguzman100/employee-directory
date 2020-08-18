@@ -12,6 +12,7 @@ class Main extends Component {
     state = {
         results: [],
         filteredResults: [],
+        selectedResult: {},
         order: 'ascend',
         search: ""
     };
@@ -97,6 +98,22 @@ class Main extends Component {
                 order: 'ascend'
             });
         }
+    };
+
+
+    handleSelectRow = (event) => {
+        //selectedResult:
+        console.log('event.target: ', event.target);
+        console.log('id: ', event.target.attributes.getNamedItem('dataid').value);
+        let dataid = event.target.attributes.getNamedItem('dataid').value;
+        this.setState({
+            selectedResult: this.state.filteredResults.filter((result) => {
+                if (result.id.value === dataid) {
+                    return result
+                }
+            })
+        });
+        console.log('selectedResult: ', this.state.selectedResult);
     }
 
 
@@ -115,7 +132,10 @@ class Main extends Component {
                     </Col>
                     <Col>
                         <Card title={'Locations 🌍'}>
-                            <Map results={this.state.results} />
+                            <Map
+                                results={this.state.filteredResults}
+                                selectedResult={this.state.selectedResult}
+                            />
                         </Card>
                     </Col>
                 </Row>
@@ -125,6 +145,7 @@ class Main extends Component {
                             <Table
                                 results={this.state.filteredResults}
                                 handleSortBtnClick={this.handleSortBtnClick}
+                                handleSelectRow={this.handleSelectRow}
                             />
                         </Card>
                     </Col>

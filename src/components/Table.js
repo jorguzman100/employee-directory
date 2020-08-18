@@ -41,6 +41,7 @@ const Table = (props) => {
                         return (
                             <TRow
                                 key={index}
+                                dataid={result.id.value}
                                 picture={result.picture.thumbnail}
                                 firstName={result.name.first}
                                 lastName={result.name.last}
@@ -49,6 +50,7 @@ const Table = (props) => {
                                 address={`${result.location.street.number} ${result.location.street.name}`}
                                 city={result.location.city}
                                 mobile={result.cell}
+                                handleSelectRow={props.handleSelectRow}
                             />
                         )
                     })}

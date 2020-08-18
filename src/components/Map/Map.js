@@ -53,6 +53,29 @@ const Map = (props) => {
     libraries,
   });
 
+  // Create marker for the selectedResult
+  /* const markSelected = React.useCallback(async (employee) => {
+    let address = `${props.selectedResult.location.city} ${props.selectedResult.location.country}`;
+    let picture = props.selectedResult.picture.thumbnail;
+    console.log('In markSelected()');
+    console.log('Name: ', props.selectedResult.name.first);
+    console.log('adress: ', address);
+
+    try {
+      const geoResults = await getGeocode({ address });
+      const { lat, lng } = await getLatLng(geoResults[0]);
+      console.log('geoResults[0]: ', geoResults[0]);
+      console.log('lat, lng: ', lat, lng);
+      getEmployeeMarkers({ lat, lng, picture });
+    } catch (error) {
+      console.log(error);
+    }
+  });
+  if (props.selectedResult) {
+    markSelected();
+  } */
+  
+
   // useState hook to define the markers and its setter - causes re-render
   const [markers, setMarkers] = React.useState([]); // map onClick
 
@@ -98,7 +121,7 @@ const Map = (props) => {
 
   return (
     <div>
-      <div className='mapText'>Editable map text </div>
+      {/* <div className='mapText'>Editable map text </div> */}
 
       {/* The Search */}
       <Search panTo={panTo} />
@@ -109,8 +132,9 @@ const Map = (props) => {
       {/* Get the employee markers */}
       <EmployeeMarker
         results={props.results}
-        getEmployeeMarkers={getEmployeeMarkers} 
-        />
+        getEmployeeMarkers={getEmployeeMarkers}
+      />
+
 
       <GoogleMap
         mapContainerStyle={mapContainerStyle}
@@ -236,7 +260,7 @@ function EmployeeMarker(props) {
             const { lat, lng } = await getLatLng(geoResults[0]);
             console.log('geoResults[0]: ', geoResults[0]);
             console.log('lat, lng: ', lat, lng);
-            props.getEmployeeMarkers({lat, lng, picture});
+            props.getEmployeeMarkers({ lat, lng, picture });
           } catch (error) {
             console.log(error);
           }
@@ -255,6 +279,8 @@ function EmployeeMarker(props) {
     </button>
   );
 }
+
+
 
 function Locate({ panTo }) {
   return (
