@@ -24,7 +24,15 @@ const Table = (props) => {
                         <th>Email</th>
                         <th>DOB</th>
                         <th>Address</th>
-                        <th>City</th>
+                        <th>City {" "}
+                             <a href='#'>
+                                <i
+                                    className="fas fa-sort text-info sortIcon"
+                                    data-value='City'
+                                    onClick={props.handleSortBtnClick}
+                                ></i>
+                            </a>
+                        </th>
                         <th>Cell</th>
                     </tr>
                 </thead>

@@ -61,27 +61,28 @@ class Main extends Component {
     };
 
     /* 
-    picture={result.picture.thumbnail}
-    firstName={result.name.first}
-    lastName={result.name.last}
-    email={result.email}
-    dob={result.dob.date.slice(0,10)}
-    {result.location.street.name}`}
-    city={result.location.city}
-    mobile={result.cell}
-    */
-
-    /* 
     "JavaScript Problem: Sorting an Array of Objects"
     Source: https://www.youtube.com/watch?v=0d76_2sksWY
     */
-    handleSortBtnClick = () => {
+    handleSortBtnClick = event => {
+        const sortType = event.target.attributes.getNamedItem("data-value").value.toLowerCase();
+        console.log('sortType: ', sortType);
+        let objLevel1 = 'name';
+        let objLevel2 = 'first';
+
+        if (sortType === 'name') {
+            objLevel1 = 'name';
+            objLevel2 = 'first';
+        } else if (sortType === 'city') {
+            objLevel1 = 'location';
+            objLevel2 = 'city';
+        }
 
         if (this.state.order === 'ascend') {
             this.setState({
                 filteredResults: this.state.filteredResults.sort((a, b) => {
-                    if (a.name.first.toLowerCase() < b.name.first.toLowerCase()) return -1;
-                    else if (a.name.first.toLowerCase() > b.name.first.toLowerCase()) return 1;
+                    if (a[`${objLevel1}`][`${objLevel2}`].toLowerCase() < b[`${objLevel1}`][`${objLevel2}`].toLowerCase()) return -1;
+                    else if (a[`${objLevel1}`][`${objLevel2}`].toLowerCase() > b[`${objLevel1}`][`${objLevel2}`].toLowerCase()) return 1;
                     else return 0;
                 }),
                 order: 'descend'
@@ -89,8 +90,8 @@ class Main extends Component {
         } else {
             this.setState({
                 filteredResults: this.state.filteredResults.sort((a, b) => {
-                    if (a.name.first.toLowerCase() > b.name.first.toLowerCase()) return -1;
-                    else if (a.name.first.toLowerCase() < b.name.first.toLowerCase()) return 1;
+                    if (a[`${objLevel1}`][`${objLevel2}`].toLowerCase() > b[`${objLevel1}`][`${objLevel2}`].toLowerCase()) return -1;
+                    else if (a[`${objLevel1}`][`${objLevel2}`].toLowerCase() < b[`${objLevel1}`][`${objLevel2}`].toLowerCase()) return 1;
                     else return 0;
                 }),
                 order: 'ascend'
