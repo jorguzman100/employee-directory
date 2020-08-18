@@ -41,21 +41,18 @@
 .mapLocate {
   position: absolute;
   top: 3.5rem;
-  right: 1rem;
+  right: 1.5rem;
   background: none;
   border: none;
   z-index: 10;
-}
-
-.mapLocate img {
-  width: 30px;
-  cursor: pointer;
+  font-size: 30px;
+  font-weight: bold;
 }
 
 .mapEmployeeIcon {
   position: absolute;
-  top: 5.5rem;
-  right: 1rem;
+  top: 6.5rem;
+  right: 1.2rem;
   background: none;
   border: none;
   z-index: 10;
@@ -63,7 +60,11 @@
   cursor: pointer;
 }
 
-/* Table with sticky header and scrollable body */
+/* 
+-------------------------------------------------------------------------
+Table fixed header and scrollable body
+Source: https://stackoverflow.com/questions/21168521/table-fixed-header-and-scrollable-body
+*/
 
 table {
   width: 100%;
@@ -97,15 +98,13 @@ tbody {
   overflow-y: auto;
 }
 
-thead {
-  /* fallback */
-}
-
 tbody td,
 thead th {
   width: 14%;
   float: left;
 }
+
+/* ------------------------------------------------------------------------- */
 
 /* .App {
   text-align: center;

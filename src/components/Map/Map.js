@@ -272,7 +272,8 @@ function Locate({ panTo }) {
         );
       }}
     >
-      <img src="/compassIcon.svg" alt="compass" />
+      {/* <img src="/compassIcon.svg" alt="compass" /> */}
+      <i className="fas fa-street-view text-info"></i>
     </button>
   );
 }

@@ -12,7 +12,7 @@ class Main extends Component {
     state = {
         results: [],
         filteredResults: [],
-        order: 'descend',
+        order: 'ascend',
         search: ""
     };
 
@@ -60,7 +60,43 @@ class Main extends Component {
         this.searchEmployees(this.state.search);
     };
 
+    /* 
+    picture={result.picture.thumbnail}
+    firstName={result.name.first}
+    lastName={result.name.last}
+    email={result.email}
+    dob={result.dob.date.slice(0,10)}
+    {result.location.street.name}`}
+    city={result.location.city}
+    mobile={result.cell}
+    */
 
+    /* 
+    "JavaScript Problem: Sorting an Array of Objects"
+    Source: https://www.youtube.com/watch?v=0d76_2sksWY
+    */
+    handleSortBtnClick = () => {
+
+        if (this.state.order === 'ascend') {
+            this.setState({
+                filteredResults: this.state.filteredResults.sort((a, b) => {
+                    if (a.name.first.toLowerCase() < b.name.first.toLowerCase()) return -1;
+                    else if (a.name.first.toLowerCase() > b.name.first.toLowerCase()) return 1;
+                    else return 0;
+                }),
+                order: 'descend'
+            });
+        } else {
+            this.setState({
+                filteredResults: this.state.filteredResults.sort((a, b) => {
+                    if (a.name.first.toLowerCase() > b.name.first.toLowerCase()) return -1;
+                    else if (a.name.first.toLowerCase() < b.name.first.toLowerCase()) return 1;
+                    else return 0;
+                }),
+                order: 'ascend'
+            });
+        }
+    }
 
 
 
@@ -76,16 +112,19 @@ class Main extends Component {
                                 handleFormSubmit={this.handleFormSubmit} />
                         </Card>
                     </Col>
-                    <Col> 
+                    <Col>
                         <Card title={'Locations 🌍'}>
-                            <Map results={this.state.results}/>
+                            <Map results={this.state.results} />
                         </Card>
                     </Col>
                 </Row>
                 <Row>
                     <Col>
                         <Card title='Details'>
-                            <Table results={this.state.filteredResults}/>
+                            <Table
+                                results={this.state.filteredResults}
+                                handleSortBtnClick={this.handleSortBtnClick}
+                            />
                         </Card>
                     </Col>
                 </Row>
