@@ -1,68 +1,140 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Employee Directory
 
-## Available Scripts
+The Employee Directory is a React application that loads a dataset of employees, allowing the user to make searches, sort, and view employees' address displayed in a Google Map.
 
-In the project directory, you can run:
+## Badges
 
-### `npm start`
+Code quality and validation
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+[![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/jorguzman100/19_employee_directory.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/jorguzman100/19_employee_directory/context:javascript)
+![shields.io](https://img.shields.io/github/languages/top/jorguzman100/19_employee_directory)
+![shields.io](https://img.shields.io/w3c-validation/html?targetUrl=https%3A%2F%2Fjorguzman100.github.io%2F19_employee_directory%2F)
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+Repository Status
 
-### `npm test`
+![shields.io](https://img.shields.io/badge/Repo%20Status-Finished-brightgreen)
+![shields.io](https://img.shields.io/bitbucket/issues/jorguzman100/19_employee_directory)
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+License
 
-### `npm run build`
+![GitHub](https://img.shields.io/github/license/jorguzman100/19_employee_directory)
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Table of contents
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+- [Employee Directory](#employee-directory)
+  - [Badges](#badges)
+  - [Table of contents](#table-of-contents)
+  - [The challenge](#the-challenge)
+  - [The development process](#the-development-process)
+  - [The Output](#the-output)
+  - [Installation and Usage](#installation-and-usage)
+  - [Credits, tools and other references](#credits-tools-and-other-references)
+  - [Contributing](#contributing)
+  - [Questions](#questions)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## The challenge
 
-### `npm run eject`
+To create a employee directory with React, break up the application's UI into components, manage component state, and respond to user events.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Main elements:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- [x] React components
+- [x] Google Maps
+- [x] Props ans State management
+- [x] Use of an external source for loading employees' data
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## The development process
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+In order to accomplish the challenge, the following steps were done:
 
-## Learn More
+1. Define the purpose, and concept of the application.
+2. Define the UI's main components
+3. Research Google Maps for React.
+4. Research other assets.
+5. Create the components and the functionality.
+6. Final review and proper documentation.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## The Output
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+With the described process we were able to create a useful and efficient single page React application.
 
-### Code Splitting
+**User stories**
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+1. As an user, I want to be able to view my entire employee directory at once so that I have quick access to their information.
+2. As an user, I want to sort the table by name or city.
+3. As and user, I want to filter the employees by name, email, date of birth, adress, city or mobile.
+4. As a user, I want to click on the Map employees icon to display markers of the employees addresses of the table.
+5. As a user, I want to click the Geo-location icon so the map will take me to my current location.
+6. As a user, I want to find any address in the map.
 
-### Analyzing the Bundle Size
+**The application**
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+![Screenshot1](./assets/images/screenshot1.png)
+![Screenshot2](./assets/images/screenshot2.png)
+![Screenshot3](./assets/images/screenshot3.png)
+![Screenshot4](./assets/images/screenshot4.png)
 
-### Making a Progressive Web App
+## Installation and Usage
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+The project was uploaded to [GitHub](https://github.com/) at the following repository:
+[https://github.com/jorguzman100/19_employee_directory](https://github.com/jorguzman100/19_employee_directory)
 
-### Advanced Configuration
+You can access the deployed application with the GitHup Pages link:
+[https://jorguzman100.github.io/19_employee_directory/](https://jorguzman100.github.io/19_employee_directory/)
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+To install the project follow these steps:
 
-### Deployment
+1. Clone the application from GitHub with:
+   - git clone [clone link from GitHub]
+2. From the root folder, install the dependencies with:
+   - npm install
+3. Run the app with:
+   - npm start
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+## Credits, tools and other references
 
-### `npm run build` fails to minify
+**Third Party Assets**
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+[RandomUser.me API](https://randomuser.me/)
+
+[Google Maps API](https://developers.google.com/maps/documentation)
+
+[Google Maps React API](https://www.npmjs.com/package/@react-google-maps/api)
+
+[Google Places React](https://www.npmjs.com/package/use-places-autocomplete)
+
+[Reach Combobox](https://reach.tech/combobox/)
+
+[Snazzy Maps Style](https://snazzymaps.com/style/8097/wy)
+
+[Browser Geolocation](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/getCurrentPosition)
+
+[Bootstrap](https://getbootstrap.com/)
+
+[Font Awesome](https://fontawesome.com/)
+
+[Shields.io](https://shields.io/)
+
+[LGTM](https://lgtm.com/)
+
+[Markup Validation Service](https://validator.w3.org/)
+
+**Tutorials**
+
+[How to Set Dynamic Property Keys with ES6](https://www.samanthaming.com/tidbits/37-dynamic-property-name-with-es6/)
+
+[Table fixed header and scrollable body](https://stackoverflow.com/questions/21168521/table-fixed-header-and-scrollable-body)
+
+[How TO - Sort a Table](https://www.w3schools.com/howto/howto_js_sort_table.asp)
+
+[JavaScript Problem: Sorting an Array of Objects](https://www.youtube.com/watch?v=0d76_2sksWY)
+
+## Contributing
+
+- Pull requests are welcome.
+- For major changes, please open an issue first to discuss what you would like to change.
+- Please make sure to update tests as appropriate.
+
+## Questions
+
+If you have questions or you want to share comments, we will be glad to hear from you. Please contact us at jorguzman100@gmail.com.
