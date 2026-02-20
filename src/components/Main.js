@@ -12,6 +12,7 @@ class Main extends Component {
     state = {
         results: [],
         filteredResults: [],
+        visibleResults: [],
         selectedResult: {},
         order: 'ascend',
         search: ""
@@ -24,35 +25,44 @@ class Main extends Component {
     searchEmployees = (query) => {
         API.search(query)
             .then((res) => {
-                // console.log('res: ', res.data.results);
                 this.setState({
                     results: res.data.results,
-                    filteredResults: res.data.results
+                    filteredResults: res.data.results,
+                    visibleResults: [],
+                    selectedResult: {}
                 });
             })
             .catch(err => console.log(err));
     };
 
+    getResultId = (result, index) => {
+        return (result.id && result.id.value) ||
+            (result.login && result.login.uuid) ||
+            `${result.email}-${index}`;
+    };
+
     handleInputChange = event => {
         const value = event.target.value.toLowerCase();
         const name = event.target.name;
+        const filteredResults = this.state.results.filter((result) => {
+            let compareData = `
+            ${result.name.first} 
+            ${result.name.last} 
+            ${result.email} 
+            ${result.dob.date.slice(0, 10)} 
+            ${result.location.street.number} 
+            ${result.location.street.name} 
+            ${result.location.city} 
+            ${result.cell}
+            `;
+            return compareData.toLowerCase().includes(value);
+        });
+
         this.setState({
             [name]: value,
-            filteredResults: this.state.results.filter((result) => {
-                let compareData = `
-                ${result.name.first} 
-                ${result.name.last} 
-                ${result.email} 
-                ${result.dob.date.slice(0, 10)} 
-                ${result.location.street.number} 
-                ${result.location.street.name} 
-                ${result.location.city} 
-                ${result.cell}
-                `;
-                if (compareData.toLowerCase().includes(value)) {
-                    return result;
-                }
-            })
+            filteredResults,
+            visibleResults: [],
+            selectedResult: {}
         });
     };
 
@@ -66,8 +76,7 @@ class Main extends Component {
     Source: https://www.youtube.com/watch?v=0d76_2sksWY
     */
     handleSortBtnClick = event => {
-        const sortType = event.target.attributes.getNamedItem("data-value").value.toLowerCase();
-        console.log('sortType: ', sortType);
+        const sortType = event.currentTarget.dataset.value;
         let objLevel1 = 'name';
         let objLevel2 = 'first';
 
@@ -81,46 +90,55 @@ class Main extends Component {
 
         if (this.state.order === 'ascend') {
             this.setState({
-                filteredResults: this.state.filteredResults.sort((a, b) => {
+                filteredResults: [...this.state.filteredResults].sort((a, b) => {
                     if (a[`${objLevel1}`][`${objLevel2}`].toLowerCase() < b[`${objLevel1}`][`${objLevel2}`].toLowerCase()) return -1;
                     else if (a[`${objLevel1}`][`${objLevel2}`].toLowerCase() > b[`${objLevel1}`][`${objLevel2}`].toLowerCase()) return 1;
                     else return 0;
                 }),
-                order: 'descend'
+                order: 'descend',
+                visibleResults: [],
+                selectedResult: {}
             });
         } else {
             this.setState({
-                filteredResults: this.state.filteredResults.sort((a, b) => {
+                filteredResults: [...this.state.filteredResults].sort((a, b) => {
                     if (a[`${objLevel1}`][`${objLevel2}`].toLowerCase() > b[`${objLevel1}`][`${objLevel2}`].toLowerCase()) return -1;
                     else if (a[`${objLevel1}`][`${objLevel2}`].toLowerCase() < b[`${objLevel1}`][`${objLevel2}`].toLowerCase()) return 1;
                     else return 0;
                 }),
-                order: 'ascend'
+                order: 'ascend',
+                visibleResults: [],
+                selectedResult: {}
             });
         }
     };
 
 
     handleSelectRow = (event) => {
-        //selectedResult:
-        console.log('event.target: ', event.target);
-        console.log('id: ', event.target.attributes.getNamedItem('dataid').value);
-        let dataid = event.target.attributes.getNamedItem('dataid').value;
-        this.setState({
-            selectedResult: this.state.filteredResults.filter((result) => {
-                if (result.id.value === dataid) {
-                    return result
-                }
-            })
-        });
-        console.log('selectedResult: ', this.state.selectedResult);
-    }
+        const target = event.target.closest('[dataid]');
+        if (!target) {
+            return;
+        }
+
+        const dataid = target.getAttribute('dataid');
+        this.setState((prevState) => ({
+            selectedResult: prevState.filteredResults.find((result, index) => this.getResultId(result, index) === dataid) || {}
+        }));
+    };
+
+    handleVisibleResultsChange = (visibleResults) => {
+        this.setState({ visibleResults });
+    };
 
 
 
     render() {
+        const selectedRowId = this.state.selectedResult && Object.keys(this.state.selectedResult).length
+            ? this.getResultId(this.state.selectedResult, 0)
+            : '';
+
         return (
-            <div className="container">
+            <div className="container app-container">
                 <Row>
                     <Col>
                         <Card title='Search'>
@@ -133,8 +151,9 @@ class Main extends Component {
                     <Col>
                         <Card title={'Locations 🌍'}>
                             <Map
-                                results={this.state.filteredResults}
+                                results={this.state.visibleResults}
                                 selectedResult={this.state.selectedResult}
+                                theme={this.props.theme}
                             />
                         </Card>
                     </Col>
@@ -144,8 +163,11 @@ class Main extends Component {
                         <Card title='Details'>
                             <Table
                                 results={this.state.filteredResults}
+                                getResultId={this.getResultId}
+                                onVisibleResultsChange={this.handleVisibleResultsChange}
                                 handleSortBtnClick={this.handleSortBtnClick}
                                 handleSelectRow={this.handleSelectRow}
+                                selectedRowId={selectedRowId}
                             />
                         </Card>
                     </Col>
@@ -156,9 +178,5 @@ class Main extends Component {
 }
 
 export default Main;
-
-
-
-
 
 

@@ -4,13 +4,16 @@ const THeader = (props) => {
     return (
         <th>
             {props.children} {"  "}
-            <a href='#'>
+            <button
+                type='button'
+                className='btn btn-link p-0 align-baseline text-decoration-none'
+                data-value={`${props.children}`.toLowerCase()}
+                onClick={props.handleSortBtnClick}
+            >
                 <i
-                    className="fas fa-sort text-info sortIcon"
-                    data-value={props.children}
-                    onClick={props.handleSortBtnClick}
+                    className="fas fa-sort sortIcon"
                 ></i>
-            </a>
+            </button>
         </th>
     );
 }

@@ -1,0 +1,29 @@
+<svg width="220" height="220" viewBox="0 0 220 220" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Employee Atlas logo">
+  <defs>
+    <linearGradient id="bg" x1="30" y1="18" x2="196" y2="212" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#8C7DFF"/>
+      <stop offset="0.52" stop-color="#5D78FF"/>
+      <stop offset="1" stop-color="#FF8B5E"/>
+    </linearGradient>
+    <radialGradient id="globe" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(111 108) rotate(90) scale(82)">
+      <stop offset="0" stop-color="#EAF0FF"/>
+      <stop offset="1" stop-color="#BFD0FF"/>
+    </radialGradient>
+  </defs>
+
+  <rect x="10" y="10" width="200" height="200" rx="54" fill="url(#bg)"/>
+  <circle cx="110" cy="110" r="70" fill="url(#globe)" fill-opacity="0.95"/>
+  <circle cx="110" cy="110" r="70" stroke="#FFFFFF" stroke-opacity="0.32" stroke-width="2"/>
+
+  <path d="M45 110H175" stroke="#6B83C8" stroke-width="3" stroke-linecap="round"/>
+  <path d="M55 82C73 95 147 95 165 82" stroke="#6B83C8" stroke-width="3" stroke-linecap="round"/>
+  <path d="M55 138C73 125 147 125 165 138" stroke="#6B83C8" stroke-width="3" stroke-linecap="round"/>
+  <path d="M110 42C96 58 91 80 91 110C91 140 96 162 110 178" stroke="#6B83C8" stroke-width="3" stroke-linecap="round"/>
+  <path d="M110 42C124 58 129 80 129 110C129 140 124 162 110 178" stroke="#6B83C8" stroke-width="3" stroke-linecap="round"/>
+
+  <path d="M111 52C88 52 69 71 69 94C69 122 111 166 111 166C111 166 153 122 153 94C153 71 134 52 111 52Z" fill="#1C2D54"/>
+  <circle cx="111" cy="94" r="17" fill="#FF8B5E"/>
+  <circle cx="104" cy="94" r="4" fill="#FFFFFF"/>
+  <circle cx="118" cy="94" r="4" fill="#FFFFFF"/>
+  <path d="M104 102C107 105 115 105 118 102" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round"/>
+</svg>
