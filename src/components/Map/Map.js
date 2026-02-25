@@ -118,8 +118,9 @@ const buildEmployeeMarker = (result, coordinates, index = 0) => {
 };
 
 const EmployeeMap = (props) => {
+  const mapsApiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY || "";
   const { isLoaded, loadError } = useLoadScript({
-    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
+    googleMapsApiKey: mapsApiKey,
     libraries,
   });
 
@@ -128,6 +129,7 @@ const EmployeeMap = (props) => {
 
   const mapRef = React.useRef(null);
   const geocoderRef = React.useRef(null);
+  // Cache city lookups so sort/filter actions do not re-geocode the same place.
   const cityCoordinatesCacheRef = React.useRef(new window.Map());
   const markerRequestIdRef = React.useRef(0);
 
@@ -292,6 +294,7 @@ const EmployeeMap = (props) => {
     mapRef.current.setZoom(10);
   }, []);
 
+  if (!mapsApiKey) return "Add REACT_APP_GOOGLE_MAPS_API_KEY in .env to load the map.";
   if (loadError) return "Error loading Maps";
   if (!isLoaded) return "Loading Maps...";
 
@@ -373,7 +376,7 @@ const Search = ({ panTo }) => {
             const { lat, lng } = await getLatLng(results[0]);
             panTo({ lat, lng });
           } catch (error) {
-            console.log(error);
+            console.error(error);
           }
         }}
       >

@@ -65,8 +65,7 @@ const Table = (props) => {
     }, [results, onVisibleResultsChange, getResultId]);
 
     React.useEffect(() => {
-        // Force a fresh publish when the results array changes.
-        // This keeps the map and table in sync after sort/filter updates.
+        // Refresh the visible rows list after sort/filter changes.
         visibleIdsRef.current = '__force_refresh__';
         publishVisibleRows();
 

@@ -2,11 +2,10 @@ import React, { Component } from 'react';
 import Row from './Row';
 import Col from './Col';
 import Card from './Card';
-import Search from './Search'
+import Search from './Search';
 import Table from './Table';
 import Map from './Map/Map';
 import API from '../utils/API';
-
 
 class Main extends Component {
     state = {
@@ -22,8 +21,8 @@ class Main extends Component {
         this.searchEmployees();
     }
 
-    searchEmployees = (query) => {
-        API.search(query)
+    searchEmployees = () => {
+        API.search()
             .then((res) => {
                 this.setState({
                     results: res.data.results,
@@ -32,7 +31,7 @@ class Main extends Component {
                     selectedResult: {}
                 });
             })
-            .catch(err => console.log(err));
+            .catch((error) => console.error(error));
     };
 
     getResultId = (result, index) => {
@@ -68,13 +67,8 @@ class Main extends Component {
 
     handleFormSubmit = event => {
         event.preventDefault();
-        this.searchEmployees(this.state.search);
+        this.searchEmployees();
     };
-
-    /* 
-    "JavaScript Problem: Sorting an Array of Objects"
-    Source: https://www.youtube.com/watch?v=0d76_2sksWY
-    */
     handleSortBtnClick = event => {
         const sortType = event.currentTarget.dataset.value;
         let objLevel1 = 'name';
@@ -129,9 +123,6 @@ class Main extends Component {
     handleVisibleResultsChange = (visibleResults) => {
         this.setState({ visibleResults });
     };
-
-
-
     render() {
         const selectedRowId = this.state.selectedResult && Object.keys(this.state.selectedResult).length
             ? this.getResultId(this.state.selectedResult, 0)
@@ -178,5 +169,3 @@ class Main extends Component {
 }
 
 export default Main;
-
-

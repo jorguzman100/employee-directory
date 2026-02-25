@@ -1,13 +1,15 @@
 import React from 'react';
 
 const THeader = (props) => {
+    const sortKey = `${props.children}`.toLowerCase();
+
     return (
         <th>
             {props.children} {"  "}
             <button
                 type='button'
                 className='btn btn-link p-0 align-baseline text-decoration-none'
-                data-value={`${props.children}`.toLowerCase()}
+                data-value={sortKey}
                 onClick={props.handleSortBtnClick}
             >
                 <i

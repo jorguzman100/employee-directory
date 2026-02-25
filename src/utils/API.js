@@ -1,13 +1,9 @@
-import axios from "axios";
-const baseUrl = "https://randomuser.me/api/?";
-let numberOfResults = 'results=200';
-let nationalities = 'nat=us';
+import axios from 'axios';
 
-let fullUrl = `${baseUrl+numberOfResults}&${nationalities}`;
+const EMPLOYEES_URL = 'https://randomuser.me/api/?results=200&nat=us';
 
 export default {
-    search: function () {
-        // console.log('query: ', query);
-    return axios.get(fullUrl);
-  }
+  search() {
+    return axios.get(EMPLOYEES_URL);
+  },
 };
