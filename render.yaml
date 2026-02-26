@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: employee-directory
+    env: static
+    buildCommand: npm ci && npm run build
+    staticPublishPath: ./build
+    envVars:
+      - key: REACT_APP_GOOGLE_MAPS_API_KEY
+        sync: false
