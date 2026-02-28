@@ -46,13 +46,8 @@ Employee Atlas is a React app that pulls employee data from Random User and turn
 - Modern React + Vite frontend with component-based UI for header, search, map, table, and footer.
 - Node/Express server proxies employee requests through `/api/employees` to avoid production CORS issues.
 - Data source order is `randomuser.me` first, then local mock fallback when Random User is unavailable.
-- Google Maps JavaScript API (weekly channel) powers geocoding, markers, and autocomplete suggestions.
+- Google Maps JavaScript API powers geocoding, markers, and autocomplete suggestions.
 - Table visibility tracking syncs the map with the rows currently in view (after search/sort/scroll).
-- Render deployment is configured as a Node web service (`render.yaml`) serving API + frontend build.
-
-Project layout:
-- `client/`: React + Vite app (`src`, `public`, `index.html`, Vite config).
-- `server/`: Express API and production static serving.
 
 ---
 

@@ -349,7 +349,6 @@ const EmployeeMap = (props) => {
 
     const initializeMap = async () => {
       try {
-        console.info('[Map] init start');
         const loader = new Loader({
           apiKey: mapsApiKey,
           version: 'weekly',
@@ -358,15 +357,8 @@ const EmployeeMap = (props) => {
 
         setMapDebugStep('loading-google-script');
         await withTimeout(loader.load(), 12000, 'Google Maps script load');
-        console.info('[Map] script loaded');
 
         if (!isMounted || !mapElementRef.current || !window.google || !window.google.maps) {
-          console.warn('[Map] prerequisites missing after script load', {
-            isMounted,
-            hasElement: Boolean(mapElementRef.current),
-            hasGoogle: Boolean(window.google),
-            hasMaps: Boolean(window.google && window.google.maps),
-          });
           setMapDebugStep('prereq-missing');
           return;
         }
@@ -382,8 +374,8 @@ const EmployeeMap = (props) => {
             10000,
             'Marker library import'
           );
-        } catch (markerError) {
-          console.warn('[Map] marker library import failed, using legacy markers:', markerError);
+        } catch (_markerError) {
+          // Continue with legacy markers if marker library import fails.
         }
 
         setMapDebugStep('creating-map-instance');
@@ -395,7 +387,6 @@ const EmployeeMap = (props) => {
         setLoadError('');
         setMapDebugStep('map-ready');
         setIsMapsReady(true);
-        console.info('[Map] map ready');
 
         // Do not block map render on places import; search suggestions are optional.
         setMapDebugStep('loading-places-library');
@@ -407,14 +398,11 @@ const EmployeeMap = (props) => {
           );
           setIsPlacesReady(true);
           setMapDebugStep('ready');
-          console.info('[Map] places imported');
-        } catch (placesError) {
-          console.warn('[Map] places import failed, continuing without suggestions:', placesError);
+        } catch (_placesError) {
           setIsPlacesReady(false);
           setMapDebugStep('ready-no-places');
         }
       } catch (error) {
-        console.error(error);
         if (isMounted) {
           const errorMessage = error instanceof Error ? error.message : 'Unknown Maps load error';
           setLoadError(`Error loading Maps: ${errorMessage}`);
@@ -660,8 +648,7 @@ const EmployeeMap = (props) => {
         .filter(Boolean);
 
       setSuggestions(nextSuggestions);
-    } catch (error) {
-      console.error(error);
+    } catch (_error) {
       setSuggestions([]);
     }
   }, []);
@@ -698,8 +685,8 @@ const EmployeeMap = (props) => {
           const coordinates = await geocodeAddress(geocoderRef.current, suggestion.text);
           panTo(coordinates);
         }
-      } catch (error) {
-        console.error(error);
+      } catch (_error) {
+        // Ignore suggestion selection failures and keep the current map state.
       }
     },
     [panTo]

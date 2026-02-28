@@ -48,7 +48,6 @@ class Main extends Component {
             })
             .catch((error) => {
                 const message = error instanceof Error ? error.message : 'Unable to load employees.';
-                console.error(error);
                 this.setState({
                     dataError: message,
                     results: [],

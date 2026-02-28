@@ -95,7 +95,6 @@ const parseError = async (response) => {
 
 export default {
   async search() {
-    const start = Date.now();
     let response;
     const controller = new AbortController();
     const timeoutId = setTimeout(() => {
@@ -109,24 +108,13 @@ export default {
         },
       });
     } catch (error) {
-      console.error('[API.search] network failure, using local mock data:', error);
       return createMockResponse('mock-client-network', error instanceof Error ? error.message : 'network-failure');
     } finally {
       clearTimeout(timeoutId);
     }
 
-    const contentType = response.headers.get('content-type') || 'unknown';
-    console.info('[API.search] response', {
-      url: EMPLOYEES_URL,
-      status: response.status,
-      ok: response.ok,
-      contentType,
-      ms: Date.now() - start,
-    });
-
     if (!response.ok) {
       const message = await parseError(response);
-      console.error('[API.search] non-OK response, using local mock data:', message);
       return createMockResponse('mock-client-status', message);
     }
 
@@ -134,7 +122,6 @@ export default {
     try {
       data = await response.json();
     } catch (error) {
-      console.error('[API.search] invalid JSON payload, using local mock data:', error);
       return createMockResponse(
         'mock-client-json',
         error instanceof Error ? error.message : 'invalid-json'
@@ -142,15 +129,8 @@ export default {
     }
 
     if (!data || !Array.isArray(data.results) || !data.results.length) {
-      console.warn('[API.search] empty/malformed results, using local mock data', data);
       return createMockResponse('mock-client-empty', 'empty-or-malformed-results');
     }
-
-    console.info('[API.search] loaded employees', {
-      count: data.results.length,
-      source: data.info && data.info.source ? data.info.source : 'randomuser',
-      ms: Date.now() - start,
-    });
 
     return { data };
   },
