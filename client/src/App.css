@@ -315,6 +315,40 @@ body {
   height: 30vh;
 }
 
+.map-shell {
+  position: relative;
+}
+
+.map-overlay {
+  position: absolute;
+  inset: 0;
+  border: 1px dashed var(--surface-border-strong);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  font-size: 0.82rem;
+  text-align: center;
+  pointer-events: none;
+  z-index: 8;
+}
+
+.map-load-info,
+.map-load-error {
+  font-size: 0.82rem;
+}
+
+.map-load-info {
+  color: var(--text-muted);
+  background: var(--table-body-bg);
+}
+
+.map-load-error {
+  color: #b91c1c;
+  background: rgba(254, 242, 242, 0.88);
+}
+
 .mapSearch {
   position: absolute;
   top: 0.9rem;
@@ -338,6 +372,36 @@ body {
   outline: none;
   border-color: var(--accent-cyan);
   box-shadow: 0 0 0 3px var(--focus-ring);
+}
+
+.mapSearchSuggestions {
+  list-style: none;
+  margin: 0.35rem 0 0;
+  padding: 0.25rem;
+  border-radius: 10px;
+  background: var(--surface-card);
+  border: 1px solid var(--surface-border);
+  box-shadow: var(--card-shadow);
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+.mapSearchSuggestion {
+  width: 100%;
+  border: 0;
+  text-align: left;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text-primary);
+  padding: 0.45rem 0.5rem;
+  font-size: 0.76rem;
+  line-height: 1.3;
+}
+
+.mapSearchSuggestion:hover,
+.mapSearchSuggestion:focus-visible {
+  background: var(--table-row-hover);
+  outline: none;
 }
 
 .mapLocate {
@@ -372,6 +436,42 @@ body {
   font-family: var(--font-body);
   font-size: 0.75rem;
   line-height: 1.35;
+}
+
+.map-marker-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  border: 2px solid var(--avatar-ring);
+  box-shadow: 0 0 0 3px var(--avatar-ring-soft);
+  overflow: hidden;
+  background: var(--surface-card);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.map-marker-avatar-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.map-marker-avatar-fallback {
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.app-inline-error {
+  color: #b91c1c;
+  font-size: 0.78rem;
+}
+
+.app-inline-note {
+  color: var(--text-muted);
+  font-size: 0.76rem;
 }
 
 table {

@@ -14,7 +14,10 @@ class Main extends Component {
         visibleResults: [],
         selectedResult: {},
         order: 'ascend',
-        search: ""
+        search: "",
+        dataError: '',
+        usingMockData: false,
+        diagnostics: '',
     };
 
     componentDidMount() {
@@ -24,14 +27,38 @@ class Main extends Component {
     searchEmployees = () => {
         API.search()
             .then((res) => {
+                const employees = res && res.data && Array.isArray(res.data.results)
+                    ? res.data.results
+                    : [];
+
                 this.setState({
-                    results: res.data.results,
-                    filteredResults: res.data.results,
+                    results: employees,
+                    filteredResults: employees,
                     visibleResults: [],
-                    selectedResult: {}
+                    selectedResult: {},
+                    dataError: '',
+                    usingMockData: Boolean(
+                        res &&
+                        res.data &&
+                        res.data.info &&
+                        String(res.data.info.source || '').startsWith('mock')
+                    ),
+                    diagnostics: `Loaded ${employees.length} employees from ${res && res.data && res.data.info && res.data.info.source ? res.data.info.source : 'randomuser'}`,
                 });
             })
-            .catch((error) => console.error(error));
+            .catch((error) => {
+                const message = error instanceof Error ? error.message : 'Unable to load employees.';
+                console.error(error);
+                this.setState({
+                    dataError: message,
+                    results: [],
+                    filteredResults: [],
+                    visibleResults: [],
+                    selectedResult: {},
+                    usingMockData: false,
+                    diagnostics: `Load failed: ${message}`,
+                });
+            });
     };
 
     getResultId = (result, index) => {
@@ -137,6 +164,21 @@ class Main extends Component {
                                 value={this.state.search}
                                 handleInputChange={this.handleInputChange}
                                 handleFormSubmit={this.handleFormSubmit} />
+                            {this.state.dataError ? (
+                                <p className='app-inline-error mt-2 mb-0' role='alert'>
+                                    {this.state.dataError}
+                                </p>
+                            ) : null}
+                            {this.state.usingMockData ? (
+                                <p className='app-inline-note mt-2 mb-0'>
+                                    Using local mock employee data because Random User API is unavailable.
+                                </p>
+                            ) : null}
+                            {this.state.diagnostics ? (
+                                <p className='app-inline-note mt-2 mb-0'>
+                                    {this.state.diagnostics}
+                                </p>
+                            ) : null}
                         </Card>
                     </Col>
                     <Col>

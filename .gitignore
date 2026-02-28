@@ -5,6 +5,7 @@ info.txt
 
 # dependencies
 /node_modules
+/client/node_modules
 /.pnp
 .pnp.js
 
@@ -13,6 +14,8 @@ info.txt
 
 # production
 /build
+/dist
+/client/dist
 
 # misc
 .DS_Store

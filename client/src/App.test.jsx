@@ -1,8 +1,10 @@
-import React from 'react';
 import { render, screen } from '@testing-library/react';
+import { vi } from 'vitest';
 import App from './App';
 
-jest.mock('./components/Main', () => () => null);
+vi.mock('./components/Main', () => ({
+  default: () => null,
+}));
 
 test('renders the app header and theme toggle', () => {
   render(<App />);

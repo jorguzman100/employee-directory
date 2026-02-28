@@ -10,7 +10,7 @@ const Header = ({ theme, onToggleTheme }) => {
                     <div className="app-logo-wrap">
                         <img
                             className="app-logo"
-                            src={`${process.env.PUBLIC_URL}/logo-mark.svg`}
+                            src="/logo-mark.svg"
                             alt="Employee Atlas logo"
                         />
                     </div>

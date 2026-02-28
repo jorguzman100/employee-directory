@@ -21,7 +21,7 @@ Employee Atlas is a React app that pulls employee data from Random User and turn
 
 <p align="center">
   <img
-    src="./public/employee-directory.webp"
+    src="./client/public/employee-directory.webp"
     alt="Employee Atlas directory dashboard with table and map"
     width="760"
     style="border-radius: 12px; box-shadow: 0 10px 28px rgba(16, 24, 40, 0.18); object-position: top;"
@@ -33,7 +33,8 @@ Employee Atlas is a React app that pulls employee data from Random User and turn
 ## 🛠️ Tech Stack
 
 ![React](https://img.shields.io/badge/React-20232A?style=flat-square&logo=react&logoColor=61DAFB)
-![Axios](https://img.shields.io/badge/Axios-5A29E4?style=flat-square&logo=axios&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-646CFF?style=flat-square&logo=vite&logoColor=white)
+![Express](https://img.shields.io/badge/Express-111827?style=flat-square&logo=express&logoColor=white)
 ![Google Maps](https://img.shields.io/badge/Google%20Maps-4285F4?style=flat-square&logo=googlemaps&logoColor=white)
 ![Bootstrap](https://img.shields.io/badge/Bootstrap-7952B3?style=flat-square&logo=bootstrap&logoColor=white)
 ![Random User API](https://img.shields.io/badge/RandomUser%20API-External%20Data-2D3748?style=flat-square)
@@ -42,20 +43,30 @@ Employee Atlas is a React app that pulls employee data from Random User and turn
 
 ## 🧩 Project Snapshot
 
-- Frontend-only React app (CRA) with component-based UI for header, search, map, table, and footer.
-- Employee data is fetched from `randomuser.me` using Axios (`src/utils/API.js`).
-- Google Maps + Places autocomplete powers location search, employee markers, and map panning.
+- Modern React + Vite frontend with component-based UI for header, search, map, table, and footer.
+- Node/Express server proxies employee requests through `/api/employees` to avoid production CORS issues.
+- Data source order is `randomuser.me` first, then local mock fallback when Random User is unavailable.
+- Google Maps JavaScript API (weekly channel) powers geocoding, markers, and autocomplete suggestions.
 - Table visibility tracking syncs the map with the rows currently in view (after search/sort/scroll).
-- Deployment scripts (`build`, `gh-pages`) are already configured for later publishing.
+- Render deployment is configured as a Node web service (`render.yaml`) serving API + frontend build.
+
+Project layout:
+- `client/`: React + Vite app (`src`, `public`, `index.html`, Vite config).
+- `server/`: Express API and production static serving.
 
 ---
 
 ## 🚀 Live Demo
 
-![Deployment](https://img.shields.io/badge/Deployment-Not%20deployed%20yet-lightgrey?style=for-the-badge)
-[![GitHub](https://img.shields.io/badge/GitHub-Repo-181717?style=for-the-badge&logo=github)](https://github.com/jorguzman100/employee-directory)
+<p align="center">
+  <a href="https://employee-directory-7hk1.onrender.com/" target="_blank" rel="noopener noreferrer">
+    <img src="https://img.shields.io/badge/Live%20Demo-Employee%20Atlas-22c55e?style=for-the-badge&logo=render&logoColor=white" alt="Live Demo - Employee Atlas" />
+  </a>
+</p>
 
-No public deployment yet. The project is set up to run locally now and is prepared for deployment later.
+<p align="center">
+  <a href="https://employee-directory-7hk1.onrender.com/"><strong>https://employee-directory-7hk1.onrender.com/</strong></a>
+</p>
 
 ---
 
@@ -66,7 +77,7 @@ git clone https://github.com/jorguzman100/employee-directory.git
 cd employee-directory
 npm install
 cp .env_example .env
-npm start
+npm run dev
 ```
 
 Optional production build check:
@@ -77,14 +88,15 @@ npm run build
 
 Local URL:
 
-- App: `http://localhost:3000`
+- Frontend (Vite): `http://localhost:5173`
+- Backend (Express): `http://localhost:4000`
 
 <details>
 <summary>🔑 Required environment variables</summary>
 
 ```env
 # .env
-REACT_APP_GOOGLE_MAPS_API_KEY=your_google_maps_api_key_here
+VITE_GOOGLE_MAPS_API_KEY=your_google_maps_api_key_here
 ```
 
 Google Maps note: enable both the **Maps JavaScript API** and **Places API** for the key.
@@ -95,4 +107,3 @@ Google Maps note: enable both the **Maps JavaScript API** and **Places API** for
 ## 🤝 Contributors
 
 - **Jorge Guzman**  ·  [@jorguzman100](https://github.com/jorguzman100)
-
