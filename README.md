@@ -53,15 +53,9 @@ Employee Atlas is a React app that pulls employee data from Random User and turn
 
 ## 🚀 Live Demo
 
-<p align="center">
-  <a href="https://employee-directory-7hk1.onrender.com/" target="_blank" rel="noopener noreferrer">
-    <img src="https://img.shields.io/badge/Live%20Demo-Employee%20Atlas-22c55e?style=for-the-badge&logo=render&logoColor=white" alt="Live Demo - Employee Atlas" />
-  </a>
-</p>
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Employee_Directory-22c55e?style=for-the-badge)](https://employee-directory-7hk1.onrender.com/)
 
-<p align="center">
-  <a href="https://employee-directory-7hk1.onrender.com/"><strong>https://employee-directory-7hk1.onrender.com/</strong></a>
-</p>
+[![Visit Portfolio](https://img.shields.io/badge/Visit%20My%20Portfolio-jorgeguzman.dev-22c55e?style=for-the-badge)](https://portfolio.jorgeguzman.dev/)
 
 ---
 
